@@ -217,27 +217,6 @@ c.onclick = function(){
 			pieces.selectedPiece = null;
 			renderBoard()
 
-			/*
-			if(mouse.x == selPiece()[1]&& mouse.y == selPiece()[2]-1){
-				//pawn movement
-				selPiece()[2] -= 1
-				isValid(mouse.x,mouse.y)
-				pieces.selectedPiece = null;
-				renderBoard()
-
-			}else if(mouse.x == selPiece()[1]&& mouse.y == selPiece()[2]-2 && selPiece()[2] == 6 ){
-				//double Pawn jump
-				selPiece()[2] -= 2
-				isValid(mouse.x,mouse.y)
-				pieces.selectedPiece = null;
-				renderBoard()
-
-			}else{
-				alert('invalid move')
-				pieces.selectedPiece = null;
-				renderBoard()
-			}
-			*/
 
 		}else if(selPiece()[0] == 'wRook'){
 			if(mouse.x == selPiece()[1]&& mouse.y != selPiece()[2]){
