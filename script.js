@@ -6,6 +6,9 @@ const ch = 400
 c.width = cw;
 c.height = ch;
 
+var i;
+var i0;
+
 var game={
 	'turn':'w',
 	
@@ -104,6 +107,7 @@ function isValid(x,y){
 }
 
 function pieceAt(x,y,d){
+	//returns index if d = true
 	for( i in pieces.pieces){
 		if(pieces.pieces[i][1] == x && pieces.pieces[i][2] == y){
 			if(!d){
@@ -214,24 +218,64 @@ c.onclick = function(){
 
 			}
 
-			pieces.selectedPiece = null;
-			renderBoard()
+			
 
 
 		}else if(selPiece()[0] == 'wRook'){
 			if(mouse.x == selPiece()[1]&& mouse.y != selPiece()[2]){
 
 				//vertical rook move
+				
+
+				if(mouse.y>selPiece()[2]){
+					//downward move
+					console.log('downward move')
+
+				}else{
+					// upward move
+					console.log('upward move')
+
+					for(i0=selPiece()[2]-1;i0>=mouse.y;i0-=1){
+
+						console.log(pieceAt(selPiece()[1],i0))
+
+						if( i0 == mouse.y){
+							//if on the final square
+							console.log('on final square')
+
+							if(isBlack( pieceAt(selPiece()[1],i0)[0] )){
+								console.log('landed on black piece')
+								selPiece()[1]= mouse.x
+								selPiece()[2]= mouse.y
+								takePiece(selPiece()[1],i0)
+							}else if(isWhite( pieceAt(selPiece()[1],i0)[0] )){
+								console.log('you cant take your pieces stupid')
+							}else{
+								console.log('moved')
+								selPiece()[1] = mouse.x
+								selPiece()[2] = mouse.y
+							}
+						}else{
+							//if not on final square
+							if(isBlack( pieceAt(selPiece()[1],i0)[0] )){
+								alert('black piece interfering')
+								break
+							}else if(isWhite( pieceAt(selPiece()[1],i0)[0] )){
+								alert('white piece interfering')
+								break
+							}
+						}
+						
+					}
+				}
 
 			}else if(mouse.x != selPiece()[1]&& mouse.y == selPiece()[2]){
 
-				//horisontal rook move
+				console.log('horisontal rook move')
 
 
 			}else{
 				alert('invalid move')
-				pieces.selectedPiece = null;
-				renderBoard();
 			}
 		}else if(selPiece()[0] == 'wBishop'){
 			
@@ -256,8 +300,7 @@ c.onclick = function(){
 					selPiece()[2] = mouse.y
 				}
 			}
-			pieces.selectedPiece = null;
-			renderBoard()
+
 			
 		}else if(selPiece()[0] == 'bPawn'){
 			
@@ -272,5 +315,7 @@ c.onclick = function(){
 		}else if(selPiece()[0] == 'bKing'){
 			
 		}
+		pieces.selectedPiece = null;
+		renderBoard()
 	}
 }
