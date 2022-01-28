@@ -1,4 +1,4 @@
-function moveRook(){
+function moveWhiteRook(){
     if(mouse.x == selPiece()[1]&& mouse.y != selPiece()[2]){
         if(mouse.y>selPiece()[2]){
             //downward move
