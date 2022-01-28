@@ -224,7 +224,7 @@ c.onclick = function(){
 		}else if(selPiece()[0] == 'wRook'){
 			moveWhiteRook()
 		}else if(selPiece()[0] == 'wBishop'){
-			
+			moveWhiteBishop()
 		}else if(selPiece()[0] == 'wKnight'){
 			moveWhiteKnight()
 		}else if(selPiece()[0] == 'wQueen'){
