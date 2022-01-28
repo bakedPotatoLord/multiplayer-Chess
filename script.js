@@ -225,31 +225,30 @@ c.onclick = function(){
 			if(mouse.x == selPiece()[1]&& mouse.y != selPiece()[2]){
 
 				//vertical rook move
+				if(mouse.x>selPiece()[1]){
+					//rightward wove
+
+				}else{
+					//leftward move
+
+				}
 				
 
 				if(mouse.y>selPiece()[2]){
 					//downward move
 					console.log('downward move')
-
-				}else{
-					// upward move
-					console.log('upward move')
-
-					for(i0=selPiece()[2]-1;i0>=mouse.y;i0-=1){
-
+					for(i0=selPiece()[2]+1;i0<=mouse.y;i0++){
 						console.log(pieceAt(selPiece()[1],i0))
-
 						if( i0 == mouse.y){
 							//if on the final square
 							console.log('on final square')
-
 							if(isBlack( pieceAt(selPiece()[1],i0)[0] )){
 								console.log('landed on black piece')
+								takePiece(selPiece()[1],i0)
 								selPiece()[1]= mouse.x
 								selPiece()[2]= mouse.y
-								takePiece(selPiece()[1],i0)
 							}else if(isWhite( pieceAt(selPiece()[1],i0)[0] )){
-								console.log('you cant take your pieces stupid')
+								alert('you cant take your pieces stupid')
 							}else{
 								console.log('moved')
 								selPiece()[1] = mouse.x
@@ -265,7 +264,38 @@ c.onclick = function(){
 								break
 							}
 						}
-						
+					}
+
+				}else{
+					// upward move
+					console.log('upward move')
+					for(i0=selPiece()[2]-1;i0>=mouse.y;i0-=1){
+						console.log(pieceAt(selPiece()[1],i0))
+						if( i0 == mouse.y){
+							//if on the final square
+							console.log('on final square')
+							if(isBlack( pieceAt(selPiece()[1],i0)[0] )){
+								console.log('landed on black piece')
+								takePiece(selPiece()[1],i0)
+								selPiece()[1]= mouse.x
+								selPiece()[2]= mouse.y
+							}else if(isWhite( pieceAt(selPiece()[1],i0)[0] )){
+								alert('you cant take your pieces stupid')
+							}else{
+								console.log('moved')
+								selPiece()[1] = mouse.x
+								selPiece()[2] = mouse.y
+							}
+						}else{
+							//if not on final square
+							if(isBlack( pieceAt(selPiece()[1],i0)[0] )){
+								alert('black piece interfering')
+								break
+							}else if(isWhite( pieceAt(selPiece()[1],i0)[0] )){
+								alert('white piece interfering')
+								break
+							}
+						}
 					}
 				}
 
