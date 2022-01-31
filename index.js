@@ -1,8 +1,8 @@
 const express = require('express');
-
 const app = express();
 
 const bannedFiles = []
+const port = 3000
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname+'/index.html')
@@ -15,6 +15,6 @@ app.get('*', (req, res) => {
 	console.log('requested '+req.url)
 });
 
-app.listen(3000, () => {
-  console.log('server started');
+app.listen(port, () => {
+  console.log(`server started on port ${port}`);
 });
