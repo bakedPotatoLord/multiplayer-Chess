@@ -1,17 +1,31 @@
 let tArea = document.getElementById('tArea')
 
+var openGames = []
+
+var openGamesDisplay = ''
 
 function getOpenGames(){
 
 	fetch('/opengames',{method:'POST'})
 	.then(response => response.json())
   .then(function(data){
-		alert(JSON.stringify(data))
-		tArea.value = JSON.stringify(data.openGames)
+		openGames = data.openGames
+
+		tArea.value = JSON.stringify(openGames)
 	})
   
 }
 
+window.onload = function{
+	
+
+}
 
 
-console.log( getOpenGames() )
+
+
+
+
+
+setInterval(getOpenGames,500)
+

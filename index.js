@@ -1,4 +1,6 @@
 const express = require('express');
+const { v4: uuidv4 } = require('uuid');
+
 var bodyParser = require('body-parser')
 const app = express();
 
@@ -18,6 +20,10 @@ app.get('/', (req, res) => {
 app.get('/game', (req, res) => {
   res.sendFile(__dirname+'/game/game.html')
 });
+
+app.get('/uuid',(req, res) => {
+  res.send({'uuid':uuidv4()})
+})
 
 //POST handler
 
