@@ -9,6 +9,8 @@ const app = express();
 const bannedFiles = []
 const port = 3000
 
+var knownUsers = []
+
 var openGames = [1,2,3]
 
 var  games =[]
@@ -22,18 +24,25 @@ app.get('/game', (req, res) => {
 });
 
 app.get('/uuid',(req, res) => {
-  res.send({'uuid':uuidv4()})
+	temp = uuidv4()
+	knownUsers.push(temp)
+  res.send({'uuid':temp})
 })
 
 //POST handler
 
 app.post('/openGames', (req, res) => {
-
-res.send({"openGames":openGames,})
+	/*
+	if(knownUsers.includes(req.body.uuid )){
+		res.send({"openGames":openGames,})
+		console.log(`request for open games `)
+	}
+	*/
 })
 
 app.post('/creategame', (req, res) => {
-res.send({})
+
+res.send(req.body)
 })
 
 
@@ -48,3 +57,5 @@ app.get('*', (req, res) => {
 app.listen(port, () => {
   console.log(`server started on port ${port}`);
 });
+
+
