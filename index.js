@@ -28,7 +28,8 @@ app.get('/game', (req, res) => {
 app.get('/uuid',(req, res) => {
 	temp = uuidv4()
 	knownUsers.push(temp)
-  res.send({'uuid':temp})
+  	res.send({'uuid':temp})
+	  console.log(knownUsers)
 })
 
 //POST handler
