@@ -39,9 +39,15 @@ function getOpenGames(){
 	})
 	.then(response => response.json())
   	.then(function(data){
-		openGames = data.openGames
+			openGames = data.openGames
 
-		tArea.value = JSON.stringify(openGames)
+			openGamesDisplay = '//begin \n'
+			//alert(JSON.stringify(data.openGames))
+			for(i of openGames){
+				openGamesDisplay += `Game: ${openGames[i].name} created ${(openGames[i].creationTime - Date.now())} seconds ago \n`
+			}
+
+		tArea.value = openGamesDisplay
 	})
   
 }
@@ -79,6 +85,7 @@ class Game{
 			this.pass = gamePass
 		}
 		this.createTime =Date.now()
+		
 	}
 
 	

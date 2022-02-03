@@ -6,14 +6,16 @@ const app = express();
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true }))
 
-//app.use(bodyParser.json)
+
 
 const bannedFiles = []
 const port = 3000
 
+var temp
+
 var knownUsers = []
 
-var openGames = [1,2,3]
+var openGames = []
 
 var  games =[]
 
@@ -35,21 +37,21 @@ app.get('/uuid',(req, res) => {
 //POST handler
 
 app.post('/openGames', (req, res) => {
-
+	
 	res.send({"openGames":openGames,})
+	console.log('requested open games')
 
 })
 
 app.post('/creategame', (req, res) => {
-	console.log(req.headers.cookie)
-	if(knownUsers.includes(req.headers.cookie)){
-		console.log('game created')
 
-		
-	}else{
-		console.log('request from unverified sourze')
-	}
+	console.log('game created')
+	temp = req.body
+	temp.gameId = uuidv4()
+	openGames.push(temp)
+
 	res.send('request recived')
+	console.log('game created')
 })
 
 
