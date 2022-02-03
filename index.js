@@ -1,8 +1,10 @@
 const express = require('express');
 const { v4: uuidv4 } = require('uuid');
 
-var bodyParser = require('body-parser')
+
 const app = express();
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true }))
 
 //app.use(bodyParser.json)
 
@@ -32,17 +34,21 @@ app.get('/uuid',(req, res) => {
 //POST handler
 
 app.post('/openGames', (req, res) => {
-	/*
-	if(knownUsers.includes(req.body.uuid )){
-		res.send({"openGames":openGames,})
-		console.log(`request for open games `)
-	}
-	*/
+
+	res.send({"openGames":openGames,})
+
 })
 
 app.post('/creategame', (req, res) => {
+	console.log(req.headers.cookie)
+	if(knownUsers.includes(req.headers.cookie)){
+		console.log('game created')
 
-res.send(req.body)
+		
+	}else{
+		console.log('request from unverified sourze')
+	}
+	res.send('request recived')
 })
 
 
