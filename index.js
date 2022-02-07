@@ -45,13 +45,12 @@ app.post('/openGames', (req, res) => {
 
 app.post('/creategame', (req, res) => {
 
-	console.log('game created')
 	temp = req.body
 	temp.gameId = uuidv4()
 	openGames.push(temp)
 
 	res.send('request recived')
-	console.log('game created')
+	console.log('game created',)
 })
 
 
