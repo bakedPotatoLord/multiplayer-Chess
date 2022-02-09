@@ -40,11 +40,12 @@ function getOpenGames(){
 	.then(response => response.json())
   	.then(function(data){
 			openGames = data.openGames
+			console.log(openGames)
 
 			openGamesDisplay = '//begin \n'
 			//alert(JSON.stringify(data.openGames))
 			for(i of openGames){
-				openGamesDisplay += `Game: ${openGames[i].name} created ${(openGames[i].creationTime - Date.now())} seconds ago \n`
+				openGamesDisplay += `Game: ${i.name} created. Waiting for ${Math.round((Date.now() - i.createTime )/60000)} minutes \n`
 			}
 
 		tArea.value = openGamesDisplay
