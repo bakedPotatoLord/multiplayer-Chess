@@ -44,13 +44,18 @@ app.post('/openGames', (req, res) => {
 })
 
 app.post('/creategame', (req, res) => {
-
 	temp = req.body
-	temp.gameId = uuidv4()
-	openGames.push(temp)
+	if(!gameNameUsed(temp.name)){
+		
+		temp.gameId = uuidv4()
+		openGames.push(temp)
 
-	res.send('request recived')
-	console.log('game created',)
+		res.send({status:'good'})
+		console.log('game created')
+	}else{
+		res.send({status:'name already exists'})
+		console.log('name already exists')
+	}
 })
 
 
@@ -67,3 +72,11 @@ app.listen(port, () => {
 });
 
 
+function gameNameUsed(name){
+	for(i of openGames){
+		if(i.name == name){
+			return true
+		}
+	}
+	return false
+}

@@ -23,9 +23,13 @@ function createGame(){
 		})
 		.then(response => response.json())
 		.then(function(data){
-			openGames = data.openGames
+			
+			if(data.response == 'good'){
+				console.log('game creation succeded')
 
-			tArea.value = JSON.stringify(openGames)
+			}else{
+				alert('name already exists. find a new one')
+			}
 		})
 	}else{
 		alert('game creation aborted')
