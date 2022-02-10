@@ -57,6 +57,10 @@ function getOpenGames(){
   
 }
 
+function joinGame(){
+	
+}
+
 window.onload = function(){
 	if(Cookies.get('uuid') == undefined){
 		fetch('/uuid',{method:'GET'})
