@@ -1,8 +1,28 @@
-textarea {
+#gamesDisplay {
 	border-radius: 4px;
 	margin-top: 10px;
 	border:1px inset black;
 	resize: none; 
 	width:50%;
-	height:100px;
+	height:auto;
+}
+
+#gamesDisplay.scroll {
+	margin:4px, 4px;
+	padding:4px;
+	background-color: green;
+	width: 500px;
+	height: 110px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	text-align:justify;
+}
+
+#gamesDisplay div button{
+	width:auto;
+	height:20px;
+}
+
+#gamesDisplay div{
+	padding:5px;
 }

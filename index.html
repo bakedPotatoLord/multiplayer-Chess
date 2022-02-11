@@ -5,11 +5,9 @@
         <link rel="stylesheet" href="/style.css">
     </head>
     <body>
-        <p>open games</p><br>
+        <h1>open games</h1><br>
         <button onclick='createGame()'>create game</button>
-        <button onclick='getOpenGames()'>find open games</button>
-        <button onclick='joinGame()'>join a game</button><br>
-        <textarea name="tArea" id="tArea" readonly ></textarea>
+        <div id =gamesDisplay class="gamesDisplay"></div>
 				
 				<script crossorigin src='https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js'></script>
         <script src='/script.js'></script>

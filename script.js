@@ -1,4 +1,4 @@
-let tArea = document.getElementById('tArea')
+let gamesDisplay = document.getElementById('gamesDisplay')
 
 var uuid,gameInp
 
@@ -35,7 +35,7 @@ function createGame(){
 			.then(function(data){
 				if(data.status == 'good'){
 					console.log('game creation succeded')
-
+					getOpenGames()
 				}else{
 					alert('name already exists. find a new one')
 				}
@@ -55,29 +55,26 @@ function getOpenGames(){
 	.then(response => response.json())
   	.then(function(data){
 			openGames = data.openGames
-			console.log(openGames)
+			console.log('updated games')
 
-			openGamesDisplay = '//begin \n'
-			//alert(JSON.stringify(data.openGames))
+			openGamesDisplay = ''
 
-			
 			for(i of openGames){
-				openGamesDisplay += `Game: ${i.name} created. Waiting for ${Math.round((Date.now() - i.createTime )/60000)} minutes \n`
+				openGamesDisplay += `<div>
+				<a>Game: ${i.name} created. Waiting for ${Math.round((Date.now() - i.createTime )/60000)} minutes</a>
+				<button onclick ="joinGame('${i.gameId}')">Join this game</button>
+				</div>`
 			}
 			
-			/*
-			for(i of openGames){
-				openGamesDisplay += `<div></div>`
-			}
-			*/
 
-		tArea.value = openGamesDisplay
+		gamesDisplay.innerHTML = openGamesDisplay
+		window.setTimeout(getOpenGames,1000)
 	})
   
 }
 
-function joinGame(){
-	prompt('Type game name')
+function joinGame(gameId){
+	alert(`joining game ${gameId}`)
 }
 
 window.onload = function(){
@@ -91,6 +88,8 @@ window.onload = function(){
 	}else{
 		uuid = Cookies.get('uuid')
 	}
+
+	getOpenGames()
 }
 
 
