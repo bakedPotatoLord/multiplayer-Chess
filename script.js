@@ -58,7 +58,7 @@ function getOpenGames(){
 }
 
 function joinGame(){
-	
+	prompt('Type game name')
 }
 
 window.onload = function(){

@@ -1,12 +1,17 @@
 const express = require('express');
+const fs = require('fs')
 const { v4: uuidv4 } = require('uuid');
+
 
 
 const app = express();
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true }))
 
-
+fs.readFile('cities.json', 'utf8', function(err, data){	
+	// Save the file content
+	cities = JSON.parse(data)
+});
 
 const bannedFiles = []
 const port = 3000
@@ -17,7 +22,12 @@ var knownUsers = []
 
 var openGames = []
 
-var  games =[]
+var  games =[];
+
+
+function getCity(){
+	return cities[Math.floor(Math.random()*cities.length)].name
+}
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname+'/index.html')
@@ -32,6 +42,11 @@ app.get('/uuid',(req, res) => {
 	knownUsers.push(temp)
   	res.send({'uuid':temp})
 	  console.log(knownUsers)
+})
+
+app.get('/city',(req, res) => {
+	res.send(`<h1>${getCity()}</h1>`)
+  //res.send({'city':getCity()})
 })
 
 //POST handler
