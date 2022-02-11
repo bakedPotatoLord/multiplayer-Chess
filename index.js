@@ -52,10 +52,8 @@ app.get('/city',(req, res) => {
 //POST handler
 
 app.post('/openGames', (req, res) => {
-	
+	//return open games
 	res.send({"openGames":openGames,})
-	console.log('requested open games')
-
 })
 
 app.post('/creategame', (req, res) => {
