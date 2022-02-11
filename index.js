@@ -45,7 +45,7 @@ app.get('/uuid',(req, res) => {
 })
 
 app.get('/city',(req, res) => {
-	res.send(`<h1>${getCity()}</h1>`)
+	res.send({'city':getCity()})
   //res.send({'city':getCity()})
 })
 

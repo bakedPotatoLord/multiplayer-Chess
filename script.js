@@ -7,33 +7,44 @@ var openGames = []
 var openGamesDisplay = ''
 
 function createGame(){
-	gameInp = {
-		"name":prompt('type game name'),
-		"pass":prompt('type game password. leave empty for open game'),
-		"color":prompt('what is your preffered color to play as. type "w" or "b"'),
-	}
-	if(!(gameInp.name == null || gameInp.pass == null || gameInp.color == null)){
-		fetch('/createGame',{
-			method:'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(new Game(gameInp.name,gameInp.pass,gameInp.color))
-		})
-		.then(response => response.json())
-		.then(function(data){
-			
-			if(data.response == 'good'){
-				console.log('game creation succeded')
 
-			}else{
-				alert('name already exists. find a new one')
-			}
-		})
-	}else{
-		alert('game creation aborted')
-	}
+	
+	fetch('/city', {
+		method: 'GET', // or 'PUT'
+
+	})
+	.then(response => response.json())
+	.then(city => {
+		console.log(city)
+	
+		gameInp = {
+			"name":prompt('type game name',`Battle of ${city.city}`),
+			"pass":prompt('type game password. leave empty for open game'),
+			"color":prompt('what is your preffered color to play as. type "w" or "b"'),
+		}
+		if(!(gameInp.name == null || gameInp.pass == null || gameInp.color == null)){
+			fetch('/createGame',{
+				method:'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(new Game(gameInp.name,gameInp.pass,gameInp.color))
+			})
+			.then(response => response.json())
+			.then(function(data){
+				if(data.status == 'good'){
+					console.log('game creation succeded')
+
+				}else{
+					alert('name already exists. find a new one')
+				}
+			})
+		}else{
+			alert('game creation aborted')
+		}
+
+	})
 }
 
 function getOpenGames(){
@@ -48,9 +59,17 @@ function getOpenGames(){
 
 			openGamesDisplay = '//begin \n'
 			//alert(JSON.stringify(data.openGames))
+
+			
 			for(i of openGames){
 				openGamesDisplay += `Game: ${i.name} created. Waiting for ${Math.round((Date.now() - i.createTime )/60000)} minutes \n`
 			}
+			
+			/*
+			for(i of openGames){
+				openGamesDisplay += `<div></div>`
+			}
+			*/
 
 		tArea.value = openGamesDisplay
 	})
