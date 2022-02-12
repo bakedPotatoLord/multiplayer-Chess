@@ -5,10 +5,19 @@
         <link rel="stylesheet" href="/style.css">
     </head>
     <body>
-        <h1>open games</h1><br>
-        <button onclick='createGame()'>create game</button>
-        <div id =gamesDisplay class="gamesDisplay"></div>
-				
+			<div class='header'>
+        <h1>PotatoChess</h1><br>
+			</div>
+			<div class='main'>
+				<div class="left">
+					<h1>Join a Game</h1>
+					<div id ='gamesDisplay' class="gamesDisplay"></div>
+				</div>
+				<div class="right">
+					<h1>Or create your own</h1>
+					<button onclick='createGame()'>create game</button>
+				</div>
+			</div>
 				<script crossorigin src='https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js'></script>
         <script src='/script.js'></script>
     </body>
