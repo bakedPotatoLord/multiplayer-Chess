@@ -1,7 +1,7 @@
 const express = require('express');
 const fs = require('fs')
 const { v4: uuidv4 } = require('uuid');
-
+const figlet = require('figlet')
 
 
 const app = express();
@@ -47,6 +47,25 @@ app.get('/uuid',(req, res) => {
 app.get('/city',(req, res) => {
 	res.send({'city':getCity()})
   //res.send({'city':getCity()})
+})
+
+app.get('/text',(req, res) => {
+
+	figlet('Hello World!!',{
+    horizontalLayout: 'default',
+    verticalLayout: 'default',
+    whitespaceBreak: true
+}, function(err, data) {
+    if (err) {
+        console.log('Something went wrong...');
+        console.dir(err);
+        return;
+    }
+    //res.send(data)
+		console.log(data)
+		res.send(data)
+	});
+
 })
 
 //POST handler
