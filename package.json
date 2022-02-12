@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "body-parser": "^1.19.1",
     "express": "^4.17.2",
     "fs": "0.0.1-security",
     "uuid": "^8.3.2"

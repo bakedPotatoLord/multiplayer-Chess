@@ -59,18 +59,20 @@ function getOpenGames(){
 
 			openGamesDisplay = ''
 
-			for(i of openGames){
-				openGamesDisplay += `<div>
-				<a>Game: ${i.name} created. Waiting for ${Math.round((Date.now() - i.createTime )/60000)} minutes</a>
-				<button onclick ="joinGame('${i.gameId}')">Join this game</button>
-				</div>`
+			if(openGames.length != 0){
+				for(i of openGames){
+					openGamesDisplay += `<div>
+					<a>Game: ${i.name} created. Waiting for ${Math.round((Date.now() - i.createTime )/60000)} minutes</a>
+					<button onclick ="joinGame('${i.gameId}')">Join this game</button>
+					</div>`
+				}
+			}else{
+				openGamesDisplay = "<div><a>No joinable games. Why don't you make one?</a></div>"
 			}
-			
 
 		gamesDisplay.innerHTML = openGamesDisplay
 		window.setTimeout(getOpenGames,1000)
 	})
-  
 }
 
 function joinGame(gameId){
